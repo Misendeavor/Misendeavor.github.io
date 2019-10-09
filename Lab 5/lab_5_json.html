@@ -279,6 +279,19 @@
       { "name": "Zimbabwe", "code": "ZW" }
     ]
     console.log("List of countries in the world", countries);
+    if (typeof(Storage) !== "undefined") {
+       sessionStorage.setItem('countries',JSON.stringify(countries))
+
+    } 
+    document.getElementsByClassName("button").onclick = function() {myFunction()};
+    function myFunction(){
+      var storedArray = JSON.parse(sessionStorage.getItem('countries'));
+      var i;
+      for(i=0;i< 49;i++){
+        var x = document.querySelectorAll('.instructions');
+        x[i].innerHTML = countries[i];
+      }
+    }
   </script>
 </body>
 
