@@ -279,19 +279,35 @@
       { "name": "Zimbabwe", "code": "ZW" }
     ]
     console.log("List of countries in the world", countries);
-    if (typeof(Storage) !== "undefined") {
-       sessionStorage.setItem('countries',JSON.stringify(countries))
+    sessionStorage.setItem('countries', JSON.stringify(countries));
 
-    } 
-    document.getElementsByClassName("button").onclick = function() {myFunction()};
-    function myFunction(){
-      var storedArray = JSON.parse(sessionStorage.getItem('countries'));
-      var i;
-      for(i=0;i< 49;i++){
-        var x = document.querySelectorAll('.instructions');
-        x[i].innerHTML = countries[i];
-      }
+
+    function clickme(){
+      const json= sessionStorage.getitem('countries_arr');
+      const list = JSON.parse(json);
+      const nameArray = list.map((i)=> i.name);
+      
+      const instructions = document.querySelector('.instructions');
+
+      instructions.innerHTML= '';
+      for(let i = 0; i <50; i++){
+        const selectNumber= getRandomIntInclusive(0,242);
+        let el = document.createElement("ol");
+        el.innerText= nameArray[selectNumber];
+        instructions.appendChild(el);
+      };
+      
     }
+    function getRandomIntInclusive(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive 
+    }
+
+
+    
+    
+    
   </script>
 </body>
 
